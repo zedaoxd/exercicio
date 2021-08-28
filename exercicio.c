@@ -59,9 +59,9 @@ void imprimir(TLista *lista){
         return;
     }
 
-	printf("|Id  | Nome            | Telefone        | E-mail\n");
+	printf("|Id  | Nome           | Telefone        | E-mail\n");
 	for(int i=lista->inicio; i<lista->fim; i++){
-		printf("|%-4i| %-15s | %-15s | %-20s\n", lista->items[i].id, lista->items[i].nome, lista->items[i].telefone, lista->items[i].email);
+		printf("|%-4i| %-14s | %-15s | %-20s\n", lista->items[i].id, lista->items[i].nome, lista->items[i].telefone, lista->items[i].email);
 	}
 }
 
@@ -78,17 +78,18 @@ void imprimir(TLista *lista){
 	Descrição: O método recebe a posição inicial, final, posição esq do subvetor, posição dir do subvetor e o vetor a ser ordenado. 
 	O método particiona o vertor original em subvetores de modo recursivo.
 */
-void particiona(int pInicio, int pFim, int *esq, int *dir, int *pVetor) {
-	int pivo, temp;
+void particiona(int pInicio, int pFim, int *esq, int *dir, TContato *pVetor) {
+	TContato temp;
+	TContato pivo;
 	// pivô neste caso será o elemento central		
 	*esq = pInicio;
 	*dir = pFim;
 	pivo = pVetor[(*esq + *dir) / 2];
 
 	while (*esq < *dir) {
-		while (pVetor[*esq] < pivo) (*esq)++;
+		while (pVetor[*esq].id < pivo.id) (*esq)++;
 
-		while (pVetor[*dir] > pivo) (*dir)--;
+		while (pVetor[*dir].id > pivo.id) (*dir)--;
 
 		// se a condiçao for satisfeita então a troca é realizada
 		if (*esq <= *dir) {
@@ -111,7 +112,7 @@ Retorno: Sem retorno.
 Descrição: O método recebe a posição inicial, final e o vetor a ser ordenado. Posteriormente
 é utilizado o recurso de pivô (neste caso o elemento do meio) para ordenar o vetor.
 */
-void quick_sort(int pInicio, int pFim, int *pVetor) {
+void quick_sort(int pInicio, int pFim, TContato *pVetor) {
 	int esq, dir;
 
 	particiona(pInicio, pFim, &esq, &dir, pVetor);
