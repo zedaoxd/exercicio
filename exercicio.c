@@ -59,9 +59,9 @@ void imprimir(TLista *lista){
         return;
     }
 
-	printf("|Id  | Nome           | Telefone        | E-mail\n");
+	printf("Id  | Nome           | Telefone        | E-mail\n");
 	for(int i=lista->inicio; i<lista->fim; i++){
-		printf("|%-4i| %-14s | %-15s | %-20s\n", lista->items[i].id, lista->items[i].nome, lista->items[i].telefone, lista->items[i].email);
+		printf("%-4i| %-14s | %-15s | %-20s\n", lista->items[i].id, lista->items[i].nome, lista->items[i].telefone, lista->items[i].email);
 	}
 }
 
@@ -147,7 +147,7 @@ int main(){
 
 	lerArquivo(arquivo, lista, numCont);
 
-	quick_sort(lista->inicio, lista->fim, lista->items);
+	quick_sort(lista->inicio, lista->fim-1, lista->items);
 
 	imprimir(lista);
 
